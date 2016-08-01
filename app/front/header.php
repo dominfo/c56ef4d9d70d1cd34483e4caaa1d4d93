@@ -1,9 +1,15 @@
-<div id="header">
+<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="#">Logo</a>
+    </div>
+      <ul class="nav navbar-nav">
+        <li><a href="#">Windows</a></li>
+        <li><a href="#">Linux</a></li>
+        <li><a href="#">Mac</a></li>
+        <li><a href="#">Game</a></li>
+      </ul>
 
-<ul>
-  <li><a href="<?php echo DS.'windows'.DS ?>">windows</a></li>
-  <li><a href="<?php echo DS.'mac'.DS ?>">mac</a></li>
-  <li><a href="<?php echo DS.'linux'.DS ?>">linux</a></li>
-</ul> 
+  </div>
+</nav>
 
-</div>

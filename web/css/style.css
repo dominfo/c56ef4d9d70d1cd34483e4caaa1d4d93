@@ -1,0 +1,32 @@
+
+/*header & footer*/
+.container-fluid {
+	background-color: brown;
+	color: black;
+}
+
+/*header style class*/
+.navbar {
+      margin-bottom: 0;
+      border-radius: 0;
+    }
+
+
+/* footer */
+#footerText {
+	color: white;
+	margin-top: 10px;
+}
+
+/* slider */
+.slider {
+	background-color: #999966;
+	height: 302px;
+	width: 700px;
+	margin-left: 100px;
+}
+.slider-haeding {
+	background-color: #000;
+	height: 50px;
+	width: 700px;
+}
