@@ -69,6 +69,9 @@ function callHook() {
     case "":
         $page = 'homePage'; 
         break;
+    case "admin":
+        $page = 'adminPage'; 
+        break;
     case "windows":
     case "mac":
     case "linux";
