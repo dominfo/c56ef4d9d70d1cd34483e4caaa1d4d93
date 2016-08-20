@@ -65,21 +65,22 @@ class form
     {
         return $this->form_name;
     }
-    public function startForm($name ,$method, $file = false )
+    public function startForm($name ,$method, $action , $file = false )
     {
         if($file == true)
         {
-            return '<form name="'.$name.'" id="id_'.$this->getFormName().'"action = "" method = "'.$method.'">';        
+            $field = '<form name="'.$name.'" id="id_'.$this->getFormName().'" action = "'.$action.'" method = "'.$method.'">';        
         } 
         else
         {
-            return '<form name="'.$name.'" id="id_'.$this->getFormName().'" action = "" method = "'.$method.'"  enctype="multipart/form-data">';  
+            $field = '<form name="'.$name.'" id="id_'.$this->getFormName().'" action = "'.$action.'" method = "'.$method.'"  enctype="multipart/form-data">';  
         }
-    
+        return $field;
     }
     public function endForm()
     {
-        return '</form>';
+        $field = '</form>';
+        return $field;
     }
     public function createLable($name, $lable , $class = null )
     {
@@ -209,7 +210,7 @@ class form
         $field .= ' id="id_'.$this->getFormName().'_'.$name.'_'.$value.'">';
         return $field;
     }   
-    public function createSublitField($class = null)
+    public function createSubmitField($class = null)
     {
 
         $field = '<input type="submit"';

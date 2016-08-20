@@ -3,8 +3,8 @@ $home = new home;
 
 $softwerelist = $home->getSoftwerelist();
 
-$form = new form("form123");
-
+$home = new home();
+$form = $home->generateForm();
 ?>
 <table>
 <?php foreach ($softwerelist as $key => $value) { ?>
@@ -14,35 +14,41 @@ $form = new form("form123");
 	</tr>
 <?php } ?>
 </table>
+<pre>
 
-<?php $form->startForm('f1' , 'POST'); ?><br>
+<?php echo $form['startForm'] ?>
 
-<?php $form->createLable('fname' , 'first name'); ?> : 
-<?php $form->createTextField('fname' ,123, 'class1 class2'); ?><br>
+<?php echo $form['lable']['fname']; ?>
+<?php echo $form['Text']['fname']; ?>
 
-<?php $form->createLable('password' , 'password'); ?> : 
-<?php $form->createPssswordField('password' ,'1123', 'class1 class2'); ?><br>
+<?php echo $form['lable']['password']; ?>
+<?php echo $form['password']['password']; ?>
 
-<?php $form->createLable('email' , 'email'); ?> : 
-<?php $form->createEmailField('email' , 'class1 class2'); ?><br>
- 
-<?php $form->createButtonField('button' , 'click me'); ?><br>
+<?php echo $form['lable']['email']; ?>
+<?php echo $form['email']['email']; ?>
 
-<?php $form->createHiddenField('button' , 'click me'); ?><br>
+<?php echo $form['Button']['button']; ?>
+<?php echo $form['Hidden']['234234']; ?>
 
-<?php $form->createRadioField('gender' , 'male'); ?><?php $form->createLable('gender' , 'male'); ?> 
-<?php $form->createRadioField('gender' , 'female'); ?><?php $form->createLable('gender' , 'female'); ?> 
-<?php $form->createRadioField('gender' , 'other'); ?><?php $form->createLable('gender' , 'other'); ?> <br>
+<?php echo $form['Radio']['male']; ?>
+<?php echo $form['lable']['gender'][0]; ?>
 
-<?php $form->createCheckboxField('s1' , 'ss1'); ?><?php $form->createLable('asd' , 'asdasd'); ?> 
-<?php $form->createCheckboxField('s2' , 'ss2'); ?><?php $form->createLable('asd' , 'asdasd'); ?> 
-<?php $form->createCheckboxField('s3' , 'ss3'); ?><?php $form->createLable('asd' , 'asdasd'); ?> <br>
+<?php echo $form['Radio']['female']; ?>
+<?php echo $form['lable']['gender'][0]; ?>
 
-
-<?php $form->createUrlField('button' , 'click me'); ?><br>
+<?php echo $form['Radio']['other']; ?>
+<?php echo $form['lable']['gender'][3]; ?>
 
 
-<?php $form->createResetField('button' ); ?><br>
-<?php $form->createSublitField('button' ); ?><br>
+<?php echo $form['checkbox']['s1']; ?>
+<?php echo $form['lable']['asd'][0]; ?>
 
-<?php $form->endForm(); ?><br>
+<?php echo $form['checkbox']['s2']; ?>
+<?php echo $form['lable']['asd'][1]; ?>
+
+<?php echo $form['checkbox']['s3']; ?>
+<?php echo $form['lable']['asd'][2]; ?>
+
+
+<?php echo $form['submit']; ?>
+<?php echo $form['endForm']; ?>
