@@ -17,6 +17,12 @@ database::setQuery('insert','authousers',array('user_name','password'),array('ad
 database::setQuery('update','authousers',array('user_name','password'),array('admin_414','password_414'),'user_id=13');
 database::setQuery('delete','authousers',null,null,'user_id=13');
 ----------------------------------------------------------------------------------------------------------------------------
+to add customquery
+
+customQuery($sql)
+
+----------------------------------------------------------------------------------------------------------------------------
+
 to get result call
  
  getResult();
@@ -64,8 +70,9 @@ to get result call
 			$columns = table columns name ("insert this data in array type")
 			$values = values for insert in table ("insert this data in array type")
 			$condition = insert condition for query like "columns name","row id or value"
+			$join = like inner join, left join, right join
 		*/
-		public function setQuery($qtype,$tablename ,$columns = '*' ,$values = NULL ,$condition = NULL,$limit = NULL) {
+		public function setQuery($qtype,$tablename ,$columns = '*' ,$values = NULL ,$condition = NULL,$limit = NULL,$join = NULL) {
 			self::$querytype = $qtype;
 			self::$db_columns = $columns;
 			self::$db_values = $values;
@@ -82,17 +89,29 @@ to get result call
 						array_push(self::$q, $columns);
 					}
 					array_push(self::$q, "FROM");
-					array_push(self::$q, '`'.$tablename.'`');
-					if($condition != NULL) {
-						array_push(self::$q, "WHERE");
-						array_push(self::$q, $condition);
+					if(is_array($tablename)) {
+						$p=array();
+						for ($i=0; $i <count($tablename) ; $i++) { 
+							array_push($p, '`'.$tablename[$i].'`');
+						}
+						$a = implode(", ", $p);
+						array_push(self::$q, $a);
+					}else{
+						array_push(self::$q, '`'.$tablename.'`');
+					}
+					}
+					if($join == null){
+						if($condition != NULL) {
+							array_push(self::$q, "WHERE");
+							array_push(self::$q, $condition);
+						}
 					}
 					if($limit != NULL) {
 						array_push(self::$q, "LIMIT");
 						array_push(self::$q, $limit);
 					}
 					self::$myQuery = implode(' ', self::$q);
-					self::select();
+					//self::select();
 					break;
 
 				//INSERT INTO query case
@@ -175,6 +194,28 @@ to get result call
 					break;
 			}
 		}
+		public function customQuery($sql) {
+			$sql=self::$myQuery;
+			$con=explode(" ", trim($sql));
+			switch ($con[0]) {
+				case 'SELECT':
+					self::select();
+					break;
+				case 'INSERT':
+					self::insert();
+					break;
+				case 'UPDATE':
+					self::update();
+					break;
+				case 'DELETE':
+					self::delete();
+					break;
+				
+				default:
+					echo "enter right query";
+					break;
+			}
+		}
 		
 		/*TO run select query*/	
 		protected function select() {			
@@ -234,7 +275,8 @@ to get result call
 		}
 		/*get result of any queru*/
 		public function getResult() {
-			return self::$result;
+			echo self::$myQuery;
+			//return self::$result;
 		}	
 }
 ?>
