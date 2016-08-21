@@ -29,7 +29,7 @@ to get result call
 		private static $DB_HOST = "localhost";  //define database host
 		private static $DB_USER = "root";	//define db username
 		private static $DB_PASSWORD = "";	//define db password
-		private static $DB_NAME = "test";	//define db name
+		private static $DB_NAME = "pickyug";	//define db name
 		// General var
 		private static $conn = false;
 		private static $dbconn = ""; //define database connection var
@@ -65,7 +65,7 @@ to get result call
 			$values = values for insert in table ("insert this data in array type")
 			$condition = insert condition for query like "columns name","row id or value"
 		*/
-		public function setQuery($qtype,$tablename ,$columns = '*' ,$values = NULL ,$condition = NULL,$limit = NULL) {
+		public function setQuery($qtype,$tablename ,$columns = '*' ,$values = NULL ,$condition = NULL,$limit = NULL, $oreder = NULL ) {
 			self::$querytype = $qtype;
 			self::$db_columns = $columns;
 			self::$db_values = $values;
@@ -91,7 +91,12 @@ to get result call
 						array_push(self::$q, "LIMIT");
 						array_push(self::$q, $limit);
 					}
+					if($oreder != NULL) {
+						array_push(self::$q, "order by ");
+						array_push(self::$q, $oreder);
+					}
 					self::$myQuery = implode(' ', self::$q);
+					
 					self::select();
 					break;
 

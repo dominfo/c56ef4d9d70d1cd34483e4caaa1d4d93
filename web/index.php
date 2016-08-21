@@ -5,31 +5,38 @@ define('ROOT', dirname(dirname(__FILE__)));
 define('WEB', dirname(__FILE__));
 
 require_once (ROOT . DS . 'config' . DS . 'config.php');
-require_once (ROOT . DS . 'config' . DS . 'database.php');
+//require_once (ROOT . DS . 'config' . DS . 'database.php');
  
 /** Check if environment is development and display errors **/
  
-function setReporting() {
-if (DEVELOPMENT_ENVIRONMENT == true) {
-    error_reporting(E_ALL);
-    ini_set('display_errors','On');
-} else {
-    error_reporting(E_ALL);
-    ini_set('display_errors','Off');
-    ini_set('log_errors', 'On');
-    ini_set('error_log', ROOT.DS.'tmp'.DS.'logs'.DS.'error.log');
-}
+function setReporting() 
+{
+    if (DEVELOPMENT_ENVIRONMENT == true)
+    {
+        error_reporting(E_ALL);
+        ini_set('display_errors','On');
+    }
+    else
+    {
+        error_reporting(E_ALL);
+        ini_set('display_errors','Off');
+        ini_set('log_errors', 'On');
+        ini_set('error_log', ROOT.DS.'tmp'.DS.'logs'.DS.'error.log');
+    }
 }
  
 /** Check for Magic Quotes and remove them **/
  
-function stripSlashesDeep($value) {
+function stripSlashesDeep($value)
+{
     $value = is_array($value) ? array_map('stripSlashesDeep', $value) : stripslashes($value);
     return $value;
 }
  
-function removeMagicQuotes() {
-    if ( get_magic_quotes_gpc() ) {
+function removeMagicQuotes()
+{
+    if ( get_magic_quotes_gpc() )
+    {
         $_GET    = stripSlashesDeep($_GET   );
         $_POST   = stripSlashesDeep($_POST  );
         $_COOKIE = stripSlashesDeep($_COOKIE);
@@ -38,13 +45,17 @@ function removeMagicQuotes() {
  
 /** Check register globals and remove them **/
  
-function unregisterGlobals() {
-    if (ini_get('register_globals')) {
+function unregisterGlobals()
+{
+    if (ini_get('register_globals'))
+    {
         $array = array('_SESSION', '_POST', '_GET', '_COOKIE', '_REQUEST', '_SERVER', '_ENV', '_FILES');
-        foreach ($array as $value) {
+        foreach ($array as $value)
+        {
             foreach ($GLOBALS[$value] as $key => $var) 
             {
-                if ($var === $GLOBALS[$key]) {
+                if ($var === $GLOBALS[$key])
+                {
                     unset($GLOBALS[$key]);
                 }
             }
@@ -54,8 +65,10 @@ function unregisterGlobals() {
 
 // /** Main Call Function **/
  
-function callHook() {
+function callHook()
+{
     global $page;
+    global $page2;
     global $os;
     
 
@@ -63,23 +76,34 @@ function callHook() {
     $urlArray = explode("/",URL);
 
     $level_1 = $urlArray[1];
-    array_shift($urlArray);
+    $level_2 = $urlArray[2];
 
-    switch ($level_1) {
-    case "":
-        $page = 'homePage'; 
-        break;
-    case "admin":
-        $page = 'adminPage'; 
-        break;
-    case "windows":
-    case "mac":
-    case "linux";
-        $os = $level_1;
-        $page = 'osDisplayPage';
-        break;
-    default:
-        echo "Your favorite color is neither red, blue, nor green!";
+    switch ($level_1)
+    {
+        case "":
+            $page = 'homePage'; 
+            break;
+        case "admin":   
+            $page = 'admin'; 
+            switch ($level_2)
+            {
+                case "login":
+                    $page2 = 'login'; 
+                    break;  
+                case "category":
+                    $page2 = 'category'; 
+                    break;  
+                default:
+            }
+            break;
+        case "windows":
+        case "mac":
+        case "linux";
+            $os = $level_1;
+            $page = 'osDisplayPage';
+            break;
+        default:
+     }   
 }
 
     // $action = $urlArray[0];
@@ -97,7 +121,7 @@ function callHook() {
     // // } else {
     // //     /* Error Generation Code Here */
     // // }
-}
+// }
  
 /** Autoload any classes that are required **/
  
@@ -116,5 +140,14 @@ setReporting();
 removeMagicQuotes();
 unregisterGlobals();
 callHook();
+$urlArray = explode("/",URL);
+if($urlArray[1] == 'admin')
+{
+    require_once(ROOT.DS.'app'.DS.'admin'.DS.'layout.php');
+}
+else
+{
+     require_once(ROOT.DS.'app'.DS.'front'.DS.'layout.php');
+}
 
-require_once(ROOT.DS.'app'.DS.'front'.DS.'layout.php');
+

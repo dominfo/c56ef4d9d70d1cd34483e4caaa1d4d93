@@ -4,7 +4,7 @@ define('ROOT', dirname(dirname(dirname(__FILE__))));
 define('WEB', dirname(__FILE__));
 
 require_once (ROOT . DS . 'config' . DS . 'config.php');
-require_once (ROOT . DS . 'config' . DS . 'database.php');
+//require_once (ROOT . DS . 'config' . DS . 'database.php');
 
 
 if(isset($_POST['submit']))
