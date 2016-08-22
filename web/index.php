@@ -76,7 +76,7 @@ function callHook()
     $urlArray = explode("/",URL);
 
     $level_1 = $urlArray[1];
-    $level_2 = $urlArray[2];
+    @$level_2 = $urlArray[2];
 
     switch ($level_1)
     {
@@ -87,11 +87,17 @@ function callHook()
             $page = 'admin'; 
             switch ($level_2)
             {
+                // case "":
+                //     $page2 = 'login'; 
+                //     break;
                 case "login":
                     $page2 = 'login'; 
                     break;  
                 case "category":
                     $page2 = 'category'; 
+                    break;
+                case "dashboard":
+                    $page2 = 'dashboard'; 
                     break;  
                 default:
             }
