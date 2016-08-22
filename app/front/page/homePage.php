@@ -37,7 +37,7 @@ $form = $home->generateForm();
 <?php echo $form['lable']['gender'][0]; ?>
 
 <?php echo $form['Radio']['other']; ?>
-<?php echo $form['lable']['gender'][3]; ?>
+<?php echo $form['lable']['gender'][0]; ?>
 
 
 <?php echo $form['checkbox']['s1']; ?>

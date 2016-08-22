@@ -116,13 +116,16 @@
 <body>
     <header>
 
-        <?php require_once(ROOT.DS.'app'.DS.'admin'.DS.'header.php') ?>
+        <?php if($page2 != 'login') {require_once(ROOT.DS.'app'.DS.'admin'.DS.'header.php');}  ?>
     </header>
     <content>
-        <?php require_once(ROOT.DS.'app'.DS.'admin'.DS.'content.php') ?>
+        <?php
+        if($page2 != 'login') {require_once(ROOT.DS.'app'.DS.'admin'.DS.'sidebar.php');} 
+        require_once(ROOT.DS.'app'.DS.'admin'.DS.'content.php') 
+        ?>
     </content>
     <footer>
-        <?php require_once(ROOT.DS.'app'.DS.'admin'.DS.'footer.php') ?>
+        <?php if($page2 != 'login') {require_once(ROOT.DS.'app'.DS.'admin'.DS.'footer.php');} ?>
     </footer>
 </body>
 </html>
