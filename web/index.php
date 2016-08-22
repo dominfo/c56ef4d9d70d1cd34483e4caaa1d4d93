@@ -87,9 +87,9 @@ function callHook()
             $page = 'admin'; 
             switch ($level_2)
             {
-                // case "":
-                //     $page2 = 'login'; 
-                //     break;
+                case "":
+                    $page2 = 'login'; 
+                    break;
                 case "login":
                     $page2 = 'login'; 
                     break;  
