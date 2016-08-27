@@ -18,36 +18,74 @@ foreach ($list as &$category) {
 }
 $finalList = $map[0]['subcategories'];
 
-function getsubcategories($value)
+//print_r($finalList);
+function getsubcategories($value , $i)
 {
+
 	if (isset($value['subcategories']))
 	{
-		echo "<ul>";
+			echo '<ul class="list-group">';
+			$j=1;
 			foreach ($value['subcategories'] as $key => $value) 
 			{
-				echo "<li>";
-				echo $value['name'];
-				getsubcategories($value);
-				echo "</li>";
+				echo '<li class="list-group-item">';
+				echo '<a href="#item-'.$i.'-'.$j.'" class="list-group-item" data-toggle="collapse">';
+				echo '<i class="glyphicon glyphicon-chevron-right"></i>'.$value['name']; 
+				echo '</a>';
+				echo '</li>';
+				$j++;
+				//getsubcategories($value , $i);
+
 			}
-		echo "</ul>";
+			$i++;
+			echo '</ul>';
 	}
+
 }
 ?>
 <!-- 
 <pre>
 <?php //print_r($finalList);?>
 </pre> -->
-<div>
-<ul>
-	<?php foreach ($finalList as $key => $value) : ?>
-		<li>
-			<?php if (isset($value['name'])) { ?>
-				<?php echo $value['name']; ?> 
-				<ul>
-					<?php getsubcategories($value); ?>
-				</ul>
-			<?php } ?>
-		</li>
-	<?php endforeach; ?>
-</ul>
+<div id="page-wrapper">
+	<div class="container-fluid">
+		<div class="row">
+		    <div class="col-lg-12">
+		        <h1 class="page-header">
+		            	Category
+		        </h1>
+		        <ol class="breadcrumb">
+		            <li class="active">
+		                <i class="fa fa-sitemap"></i> Category
+		            </li>
+		        </ol>
+		    </div>
+		</div>
+		<div class="just-padding">
+			<div class="list-group list-group-root well">
+			<?php $i = 1 ?>
+			  	<?php foreach ($finalList as $key => $value) : ?>
+			  		
+					<a href="#item-<?php echo $i ?>" class="list-group-item" data-toggle="collapse">
+						<i class="glyphicon glyphicon-chevron-right"></i><?php echo $value['name']; ?>
+					</a>
+					<div class="list-group collapse" id="item-<?php echo $i ?>">
+						<?php getsubcategories($value , $i); ?>
+					</div>
+				<?php $i++; ?>
+			  	<?php endforeach; ?>
+			</div>
+		</div>
+	</div>
+</div>
+<script type="text/javascript">
+// A $( document ).ready() block.
+$( document ).ready(function() {
+    $('.list-group-item').on('click', function() {
+		$('.glyphicon', this)
+		  .toggleClass('glyphicon-chevron-right')
+		  .toggleClass('glyphicon-chevron-down');
+		});
+});
+
+</script>

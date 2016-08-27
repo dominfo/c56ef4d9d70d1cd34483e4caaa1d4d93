@@ -1,162 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="../../favicon.ico">
 
-<div class="login">
-	<!-- Logo -->
-	<div class="logo">
-		<img src="assets/img/logo.png" alt="logo" />
-		<strong>ME</strong>LON
-	</div>
-	<!-- /Logo -->
+    <title>Signin Template for Bootstrap</title>
 
-	<!-- Login Box -->
-	<div class="box">
-		<div class="content">
-			<!-- Login Formular -->
-			<form class="form-vertical login-form" action="index.html" method="post">
-				<!-- Title -->
-				<h3 class="form-title">Sign In to your Account</h3>
+    <!-- Bootstrap core CSS -->
+        <link href="/admin_asset/css/bootstrap.min.css" rel="stylesheet">
 
-				<!-- Error Message -->
-				<div class="alert fade in alert-danger" style="display: none;">
-					<i class="icon-remove close" data-dismiss="alert"></i>
-					Enter any username and password.
-				</div>
+    <!-- Custom styles for this template -->
+    <link href="/admin_asset/css/signin.css" rel="stylesheet">
 
-				<!-- Input Fields -->
-				<div class="form-group">
-					<!--<label for="username">Username:</label>-->
-					<div class="input-icon">
-						<i class="icon-user"></i>
-						<input type="text" name="username" class="form-control" placeholder="Username" autofocus="autofocus" data-rule-required="true" data-msg-required="Please enter your username." />
-					</div>
-				</div>
-				<div class="form-group">
-					<!--<label for="password">Password:</label>-->
-					<div class="input-icon">
-						<i class="icon-lock"></i>
-						<input type="password" name="password" class="form-control" placeholder="Password" data-rule-required="true" data-msg-required="Please enter your password." />
-					</div>
-				</div>
-				<!-- /Input Fields -->
+    <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
 
-				<!-- Form Actions -->
-				<div class="form-actions">
-					<label class="checkbox pull-left"><input type="checkbox" class="uniform" name="remember"> Remember me</label>
-					<button type="submit" class="submit btn btn-primary pull-right">
-						Sign In <i class="icon-angle-right"></i>
-					</button>
-				</div>
-			</form>
-			<!-- /Login Formular -->
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
 
-			<!-- Register Formular (hidden by default) -->
-			<form class="form-vertical register-form" action="index.html" method="post" style="display: none;">
-				<!-- Title -->
-				<h3 class="form-title">Sign Up for Free</h3>
+  </head>
 
-				<!-- Input Fields -->
-				<div class="form-group">
-					<div class="input-icon">
-						<i class="icon-user"></i>
-						<input type="text" name="username" class="form-control" placeholder="Username" autofocus="autofocus" data-rule-required="true" />
-					</div>
-				</div>
-				<div class="form-group">
-					<div class="input-icon">
-						<i class="icon-lock"></i>
-						<input type="password" name="password" class="form-control" placeholder="Password" id="register_password" data-rule-required="true" />
-					</div>
-				</div>
-				<div class="form-group">
-					<div class="input-icon">
-						<i class="icon-ok"></i>
-						<input type="password" name="password_confirm" class="form-control" placeholder="Confirm Password" data-rule-required="true" data-rule-equalTo="#register_password" />
-					</div>
-				</div>
-				<div class="form-group">
-					<div class="input-icon">
-						<i class="icon-envelope"></i>
-						<input type="text" name="Email" class="form-control" placeholder="Email address" data-rule-required="true" data-rule-email="true" />
-					</div>
-				</div>
-				<div class="form-group spacing-top">
-					<label class="checkbox"><input type="checkbox" class="uniform" name="remember" data-rule-required="true" data-msg-required="Please accept ToS first."> I agree to the <a href="javascript:void(0);">Terms of Service</a></label>
-					<label for="remember" class="has-error help-block" generated="true" style="display:none;"></label>
-				</div>
-				<!-- /Input Fields -->
+  <body>
 
-				<!-- Form Actions -->
-				<div class="form-actions">
-					<button type="button" class="back btn btn-default pull-left">
-						<i class="icon-angle-left"></i> Back</i>
-					</button>
-					<button type="submit" class="submit btn btn-primary pull-right">
-						Sign Up <i class="icon-angle-right"></i>
-					</button>
-				</div>
-			</form>
-			<!-- /Register Formular -->
-		</div> <!-- /.content -->
+    <div class="container">
 
-		<!-- Forgot Password Form -->
-		<div class="inner-box">
-			<div class="content">
-				<!-- Close Button -->
-				<i class="icon-remove close hide-default"></i>
+      <form class="form-signin">
+        <h2 class="form-signin-heading">Please sign in</h2>
+        <label for="inputEmail" class="sr-only">Email address</label>
+        <input type="email" id="inputEmail" class="form-control" placeholder="Email address" required autofocus>
+        <label for="inputPassword" class="sr-only">Password</label>
+        <input type="password" id="inputPassword" class="form-control" placeholder="Password" required>
+        <div class="checkbox">
+          <label>
+            <input type="checkbox" value="remember-me"> Remember me
+          </label>
+        </div>
+        <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+      </form>
 
-				<!-- Link as Toggle Button -->
-				<a href="#" class="forgot-password-link">Forgot Password?</a>
+    </div> <!-- /container -->
 
-				<!-- Forgot Password Formular -->
-				<form class="form-vertical forgot-password-form hide-default" action="login.html" method="post">
-					<!-- Input Fields -->
-					<div class="form-group">
-						<!--<label for="email">Email:</label>-->
-						<div class="input-icon">
-							<i class="icon-envelope"></i>
-							<input type="text" name="email" class="form-control" placeholder="Enter email address" data-rule-required="true" data-rule-email="true" data-msg-required="Please enter your email." />
-						</div>
-					</div>
-					<!-- /Input Fields -->
 
-					<button type="submit" class="submit btn btn-default btn-block">
-						Reset your Password
-					</button>
-				</form>
-				<!-- /Forgot Password Formular -->
-
-				<!-- Shows up if reset-button was clicked -->
-				<div class="forgot-password-done hide-default">
-					<i class="icon-ok success-icon"></i> <!-- Error-Alternative: <i class="icon-remove danger-icon"></i> -->
-					<span>Great. We have sent you an email.</span>
-				</div>
-			</div> <!-- /.content -->
-		</div>
-		<!-- /Forgot Password Form -->
-	</div>
-	<!-- /Login Box -->
-
-	<!-- Single-Sign-On (SSO) -->
-	<div class="single-sign-on">
-		<span>or</span>
-
-		<button class="btn btn-facebook btn-block">
-			<i class="icon-facebook"></i> Sign in with Facebook
-		</button>
-
-		<button class="btn btn-twitter btn-block">
-			<i class="icon-twitter"></i> Sign in with Twitter
-		</button>
-
-		<button class="btn btn-google-plus btn-block">
-			<i class="icon-google-plus"></i> Sign in with Google
-		</button>
-	</div>
-	<!-- /Single-Sign-On (SSO) -->
-
-	<!-- Footer -->
-	<div class="footer">
-		<a href="#" class="sign-up">Don't have an account yet? <strong>Sign Up</strong></a>
-	</div>
-	<!-- /Footer -->
-</div>
-<pre>
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <script src="../../assets/js/ie10-viewport-bug-workaround.js"></script>
+  </body>
+</html>

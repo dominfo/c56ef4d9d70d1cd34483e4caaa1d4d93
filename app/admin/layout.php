@@ -1,131 +1,61 @@
 
+<?php if ($page2 == 'login') { ?>
+
+<?php require_once(ROOT.DS.'app'.DS.'admin'.DS.'content.php') ?>
+            
+<?php }else{ ?>
 <!DOCTYPE HTML>
 <html>
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0" />
-    <title>Dashboard | Melon - Flat &amp; Responsive Admin Template</title>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+        <title>Dashboard | Melon - Flat &amp; Responsive Admin Template</title>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="description" content="">
+        <meta name="author" content="">
 
-    <!--=== CSS ===-->
+        <title>SB Admin - Bootstrap Admin Template</title>
 
-    <!-- Bootstrap -->
-    <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+        <!-- Bootstrap Core CSS -->
+        <link href="/admin_asset/css/bootstrap.min.css" rel="stylesheet">
 
-    <!-- jQuery UI -->
-    <!--<link href="plugins/jquery-ui/jquery-ui-1.10.2.custom.css" rel="stylesheet" type="text/css" />-->
-    <!--[if lt IE 9]>
-        <link rel="stylesheet" type="text/css" href="plugins/jquery-ui/jquery.ui.1.10.2.ie.css"/>
-    <![endif]-->
+        <!-- Custom CSS -->
+        <link href="/admin_asset/css/sb-admin.css" rel="stylesheet">
+       
+        <!-- Morris Charts CSS -->
+        <link href="/admin_asset/css/plugins/morris.css" rel="stylesheet">
 
-    <!-- Theme -->
-    <link href="assets/css/main.css" rel="stylesheet" type="text/css" />
-    <link href="assets/css/plugins.css" rel="stylesheet" type="text/css" />
-    <link href="assets/css/responsive.css" rel="stylesheet" type="text/css" />
-    <link href="assets/css/icons.css" rel="stylesheet" type="text/css" />
-    <link href="assets/css/login.css" rel="stylesheet" type="text/css" />
-    <link rel="stylesheet" href="assets/css/fontawesome/font-awesome.min.css">
-    <!--[if IE 7]>
-        <link rel="stylesheet" href="assets/css/fontawesome/font-awesome-ie7.min.css">
-    <![endif]-->
+        <!-- Custom Fonts -->
+        <link href="/admin_asset/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+        <!--=== CSS ===-->
+        <!-- jQuery -->
+        <script src="/admin_asset/js/jquery.js"></script>
 
-    <!--[if IE 8]>
-        <link href="assets/css/ie8.css" rel="stylesheet" type="text/css" />
-    <![endif]-->
-    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,600,700' rel='stylesheet' type='text/css'>
+        <!-- Bootstrap Core JavaScript -->
+        <script src="/admin_asset/js/bootstrap.min.js"></script>
 
-    <!--=== JavaScript ===-->
+        <!-- Morris Charts JavaScript 
+        <script src="/admin_asset/js/plugins/morris/raphael.min.js"></script>
+        <script src="/admin_asset/js/plugins/morris/morris.min.js"></script>
+        <script src="/admin_asset/js/plugins/morris/morris-data.js"></script>
+        -->
+    </head>
+    <body>
+        <div id="wrapper">
+            
+            <!-- Navigation -->
+            <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+                <?php require_once(ROOT.DS.'app'.DS.'admin'.DS.'navbar.php') ?>
+            </nav>
 
-    <script type="text/javascript" src="assets/js/libs/jquery-1.10.2.min.js"></script>
-    <script type="text/javascript" src="plugins/jquery-ui/jquery-ui-1.10.2.custom.min.js"></script>
+            <!-- Navigation end -->
 
-    <script type="text/javascript" src="bootstrap/js/bootstrap.min.js"></script>
-    <script type="text/javascript" src="assets/js/libs/lodash.compat.min.js"></script>
+            <?php require_once(ROOT.DS.'app'.DS.'admin'.DS.'content.php') ?>
 
-    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
-    <!--[if lt IE 9]>
-        <script src="assets/js/libs/html5shiv.js"></script>
-    <![endif]-->
-    <!-- Slim Progress Bars -->
-    <script type="text/javascript" src="plugins/nprogress/nprogress.js"></script>
-
-    <!-- Smartphone Touch Events -->
-    <script type="text/javascript" src="plugins/touchpunch/jquery.ui.touch-punch.min.js"></script>
-    <script type="text/javascript" src="plugins/event.swipe/jquery.event.move.js"></script>
-    <script type="text/javascript" src="plugins/event.swipe/jquery.event.swipe.js"></script>
-
-    <!-- General -->
-    <script type="text/javascript" src="assets/js/libs/breakpoints.js"></script>
-    <script type="text/javascript" src="plugins/respond/respond.min.js"></script> <!-- Polyfill for min/max-width CSS3 Media Queries (only for IE8) -->
-    <script type="text/javascript" src="plugins/cookie/jquery.cookie.min.js"></script>
-    <script type="text/javascript" src="plugins/slimscroll/jquery.slimscroll.min.js"></script>
-    <script type="text/javascript" src="plugins/slimscroll/jquery.slimscroll.horizontal.min.js"></script>
-
-    <!-- Page specific plugins -->
-    <!-- Charts -->
-    <!--[if lt IE 9]>
-        <script type="text/javascript" src="plugins/flot/excanvas.min.js"></script>
-    <![endif]-->
-    <script type="text/javascript" src="plugins/sparkline/jquery.sparkline.min.js"></script>
-    <script type="text/javascript" src="plugins/flot/jquery.flot.min.js"></script>
-    <script type="text/javascript" src="plugins/flot/jquery.flot.tooltip.min.js"></script>
-    <script type="text/javascript" src="plugins/flot/jquery.flot.resize.min.js"></script>
-    <script type="text/javascript" src="plugins/flot/jquery.flot.time.min.js"></script>
-    <script type="text/javascript" src="plugins/flot/jquery.flot.growraf.min.js"></script>
-    <script type="text/javascript" src="plugins/easy-pie-chart/jquery.easy-pie-chart.min.js"></script>
-
-    <script type="text/javascript" src="plugins/daterangepicker/moment.min.js"></script>
-    <script type="text/javascript" src="plugins/daterangepicker/daterangepicker.js"></script>
-    <script type="text/javascript" src="plugins/blockui/jquery.blockUI.min.js"></script>
-
-    <script type="text/javascript" src="plugins/fullcalendar/fullcalendar.min.js"></script>
-
-    <!-- Noty -->
-    <script type="text/javascript" src="plugins/noty/jquery.noty.js"></script>
-    <script type="text/javascript" src="plugins/noty/layouts/top.js"></script>
-    <script type="text/javascript" src="plugins/noty/themes/default.js"></script>
-
-    <!-- Forms -->
-    <script type="text/javascript" src="plugins/uniform/jquery.uniform.min.js"></script>
-    <script type="text/javascript" src="plugins/select2/select2.min.js"></script>
-    <!-- Form Validation -->
-    <script type="text/javascript" src="plugins/validation/jquery.validate.min.js"></script>
-
-    <!-- App -->
-    <script type="text/javascript" src="assets/js/app.js"></script>
-    <script type="text/javascript" src="assets/js/plugins.js"></script>
-    <script type="text/javascript" src="assets/js/plugins.form-components.js"></script>
-     <script type="text/javascript" src="assets/js/login.js"></script>
-
-    <script>
-    $(document).ready(function(){
-        "use strict";
-
-        App.init(); // Init layout and core plugins
-        Plugins.init(); // Init all plugins
-        FormComponents.init(); // Init all form-specific plugins
-        Login.init(); // Init login JavaScript
-    });
-    </script>
-
-    <!-- Demo JS -->
-    <script type="text/javascript" src="assets/js/custom.js"></script>
-    <script type="text/javascript" src="assets/js/demo/pages_calendar.js"></script>
-    <script type="text/javascript" src="assets/js/demo/charts/chart_filled_blue.js"></script>
-    <script type="text/javascript" src="assets/js/demo/charts/chart_simple.js"></script>
-</head>
-<body>
-    <header>
-
-        <?php if($page2 != 'login') {require_once(ROOT.DS.'app'.DS.'admin'.DS.'header.php');}  ?>
-    </header>
-    <content>
-        <?php
-        if($page2 != 'login') {require_once(ROOT.DS.'app'.DS.'admin'.DS.'sidebar.php');} 
-        require_once(ROOT.DS.'app'.DS.'admin'.DS.'content.php') 
-        ?>
-    </content>
-    <footer>
-        <?php if($page2 != 'login') {require_once(ROOT.DS.'app'.DS.'admin'.DS.'footer.php');} ?>
-    </footer>
-</body>
+        </div>
+        <!-- /#wrapper -->
+    </body>
 </html>
+<?php } ?>

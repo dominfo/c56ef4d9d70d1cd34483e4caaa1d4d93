@@ -57,7 +57,13 @@ to get result call
 				return false;
 			}
 		}
-		
+		public function connectClose() {
+			if (self::$conn) {
+				mysqli_close(self::$conn);
+			}else {
+				return false;
+			}
+		}
 		/*to set any type of query using this mathod
 			$qtype = type of query like "SELECT","INSERT INTO","UPDATE","DELETE FROM"
 			$tablename = table name from database
@@ -175,6 +181,28 @@ to get result call
 					self::$myQuery = implode(' ', self::$q);
 					self::delete();
 					break;
+
+				case 'count':
+					array_push(self::$q, "SELECT ");
+					if($columns!='*') {
+						$v = 'COUNT( '.$columns.')';
+						array_push(self::$q, $v);
+					}else {
+						array_push(self::$q,'COUNT( '.$columns.' )');
+					}
+
+					array_push(self::$q, "FROM");
+					array_push(self::$q, '`'.$tablename.'`');
+					if($condition != NULL) {
+						array_push(self::$q, "WHERE");
+						array_push(self::$q, $condition);
+					}
+
+					self::$myQuery = implode(' ', self::$q);
+
+					self::count();
+					break;
+					
 				default:
 					echo "enter valid query type";
 					break;
@@ -182,8 +210,10 @@ to get result call
 		}
 		
 		/*TO run select query*/	
-		protected function select() {			
+		protected function select() {	
+
 			$query = self::$dbconn->query(self::$myQuery);	//query store in $query
+
 			if($query) {
 				self::$numResults = $query->num_rows;	//count table rows
 				for ($i=0; $i < self::$numResults; $i++) { 
@@ -191,7 +221,23 @@ to get result call
 					array_push(self::$result, $r);
 				}
 			}else {
-				array_push(self::$result, $query->error);
+				array_push(self::$result, self::$dbconn->error);
+				return false;
+			}	
+		}
+
+		/*TO run select query*/	
+		protected function count() {			
+			$query = self::$dbconn->query(self::$myQuery);	//query store in $query
+			if($query) {
+				// self::$numResults = $query->num_rows;	//count table rows
+				// for ($i=0; $i < self::$numResults; $i++) { 
+					$r = $query->fetch_row();
+					array_push(self::$result, $r[0]);
+
+				// }
+			}else {
+				array_push(self::$result, self::$dbconn->error);
 				return false;
 			}
 		}
@@ -206,7 +252,7 @@ to get result call
 				array_push(self::$result, array("id" => self::$dbconn->insert_id));
 				//self::$dbconn->insert_id()
 			 }else{
-			 	array_push(self::$result, $query->error);
+			 	array_push(self::$result, self::$dbconn->error);
 				return false;
 			 }
 		}
@@ -221,7 +267,7 @@ to get result call
 				array_push(self::$result, array("update in" => $int));
 				array_push(self::$result, array("condition" => self::$db_condition));
 			}else{
-			 	array_push(self::$result, $query->error);
+			 	array_push(self::$result, self::$dbconn->error);
 				return false;
 			 }
 		}
@@ -233,7 +279,7 @@ to get result call
 				array_push(self::$result, array("delete in" => $int));
 				array_push(self::$result, array("condition" => self::$db_condition));
 			}else{
-			 	array_push(self::$result, $query->error);
+			 	array_push(self::$result, self::$dbconn->error);
 				return false;
 			 }
 		}
@@ -241,5 +287,31 @@ to get result call
 		public function getResult() {
 			return self::$result;
 		}	
+				/*get result of any queru*/
+		public function getError() {
+			echo '<script language="javascript">';
+			echo 'alert("'.self::$dbconn->error.'")';
+			echo '</script>';
+		}	
+		/*get result of any queru*/
+		public function getQuery() {
+			return self::$myQuery;
+		}	
+				/*get result of any queru*/
+		public function flush() {
+					// General var
+		self::$conn = false;
+		self::$dbconn = ""; //define database connection var
+		self::$result = array();	//get any ruselt in array
+		self::$myQuery = "";	//get writen query
+		self::$numResults = "";	//get or display number of row in table or count result
+		self::$querytype = ""; //store query type like "SELECT","INSERT INTO","UPDATE","DELETE FROM"
+		self::$q = array(); //store query as array form
+		self::$db_columns = ""; //store database columns
+		self::$db_values = ""; //store query values
+		self::$db_condition = ""; //store condition
+		//errors
+		}	
+
 }
 ?>

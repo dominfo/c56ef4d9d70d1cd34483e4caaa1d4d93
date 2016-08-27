@@ -1,5 +1,6 @@
 <?php    
- 
+
+// exit ("index");
 define('DS', DIRECTORY_SEPARATOR);
 define('ROOT', dirname(dirname(__FILE__)));
 define('WEB', dirname(__FILE__));
@@ -70,13 +71,22 @@ function callHook()
     global $page;
     global $page2;
     global $os;
-    
+    global $urlWithoutParam;
+    global $urlWithParam;
+    global $urlParam;
 
     $urlArray = array();
-    $urlArray = explode("/",URL);
+    $urlWithParam = URL;
+    $urlArray1 = explode("?",URL);
+    $urlWithoutParam = $urlArray1[0];
+    if(array_key_exists(1, $urlArray1))
+    {
+        $urlParam = $urlArray1[1];
+    }
+    $urlArray = explode("/",$urlArray1[0]);
 
     $level_1 = $urlArray[1];
-    @$level_2 = $urlArray[2];
+    $level_2 = $urlArray[2];
 
     switch ($level_1)
     {
@@ -99,6 +109,12 @@ function callHook()
                 case "dashboard":
                     $page2 = 'dashboard'; 
                     break;  
+                case "user":
+                    $page2 = 'user'; 
+                    break;  
+                case "software":
+                    $page2 = 'software'; 
+                    break; 
                 default:
             }
             break;
