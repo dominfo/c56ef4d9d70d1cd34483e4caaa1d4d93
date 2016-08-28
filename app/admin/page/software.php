@@ -1,4 +1,33 @@
+<?php
 
+$software = new software;
+//$softwareList = $user->getUserList();
+
+if (isset($_GET['p']))
+{
+	$pageNo = $_GET['p'];
+	$softwareList = $software->getSoftwareList($_GET['p']);
+}
+else
+{
+	$pageNo = 1;
+	$softwareList = $software->getSoftwareList(null);
+}
+if (isset($_GET['delete']))
+{
+	$del = base64_decode($_GET['delete']);
+	$u = explode(',', $del);
+	$id = $u[0];
+	// echo '<script language="javascript">';
+	// echo 'alert("Do you want to delete this software '.$u[1].' ")';
+	// echo '</script>';
+	$software->deleteSoftware($id);
+	header('Location: '.$urlWithoutParam);
+	 exit;
+}
+
+	
+?>
 <div id="page-wrapper">
 	<div class="container-fluid">
 		<div class="row">
@@ -18,27 +47,35 @@
 				<table class="table table-bordered  table-striped  ">
 					<thead>
 						<tr>
-							<th class="col-lg-1">User ID</th>
-							<th class="col-lg-2">Username</th>
-							<th class="col-lg-2">First name</th>
-							<th class="col-lg-2">Last name</th>
-							<th class="col-lg-3">email id</th>
+							<th class="col-lg-1">ID</th>
+							<th class="col-lg-1 ">name</th>
+							<th class="col-lg-2 hidden-xs-down ">description</th>
+							<th class="col-lg-2">size</th>
+							<th class="col-lg-1">release_date</th>
+							<th class="col-lg-2">total_download</th>
+							<th class="col-lg-2">rating</th>
+							<th class="col-lg-3">download_name</th>
+							<th class="col-lg-2">path</th>
 							<th class="col-lg-1" colspan="2">Action</th>
 						</tr>
 					</thead>
 					<tbody>
-						<?php foreach($userList as $user) { ?>
+						<?php foreach($softwareList as $software) { ?>
 						<tr>
-							<td><?php echo $user['id'] ?></td>
-							<td><?php echo $user['username'] ?></td>
-							<td><?php echo $user['first_name'] ?></td>
-							<td><?php echo $user['last_name'] ?></td>
-							<td><?php echo $user['email'] ?></td>
+							<td><?php echo $software['id'] ?></td>
+							<td><?php echo $software['name'] ?></td>
+							<td class="hidden-xl-down " ><?php echo $software['description'] ?></td>
+							<td><?php echo $software['size'] ?></td>
+							<td><?php echo $software['release_date'] ?></td>
+							<td><?php echo $software['total_download'] ?></td>
+							<td><?php echo $software['rating'] ?></td>
+							<td><?php echo $software['download_name'] ?></td>
+							<td><?php echo $software['path'] ?></td>
 							<td>
 								<p data-toggle="tooltip" title="Edit"><button class="btn btn-primary btn-xs" data-title="Edit" data-toggle="modal" data-target="#edit" ><span class="glyphicon glyphicon-pencil"></span></button></p>
 							</td>
 							<td>
-								<a  href="<?php echo $urlWithoutParam.'?delete='.base64_encode( $user['id'].','.$user['username'] ) ?>" data-placement="top" data-toggle="tooltip" title="Delete"><button class="btn btn-danger btn-xs" data-title="Delete" data-toggle="modal" data-target="#delete" onclick=" return confirm('Delete User <?php echo $user['username'] ?> ?')" ><span class="glyphicon glyphicon-trash"></span></button></a>
+								<a  href="<?php echo $urlWithoutParam.'?delete='.base64_encode( $software['id'].','.$software['username'] ) ?>" data-placement="top" data-toggle="tooltip" title="Delete"><button class="btn btn-danger btn-xs" data-title="Delete" data-toggle="modal" data-target="#delete" onclick=" return confirm('Delete User <?php echo $software['username'] ?> ?')" ><span class="glyphicon glyphicon-trash"></span></button></a>
 							</td>
 						</tr>
 						<?php } ?>
