@@ -43,8 +43,6 @@ if (isset($_GET['new']))
 	{
 		header('Location: '.$urlWithoutParam);
 	}
-
-
 }
 $pageCount = $user->getUserPageListCount(10);
 	

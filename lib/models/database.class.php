@@ -283,6 +283,24 @@ to get result call
 				return false;
 			 }
 		}
+
+		public function customQuery($sqlQuery) {
+
+			self::$myQuery = $sqlQuery;
+			$query = self::$dbconn->query(self::$myQuery);	//query store in $query
+			if($query) {
+				self::$numResults = $query->num_rows;	//count table rows
+				for ($i=0; $i < self::$numResults; $i++) { 
+					$r = $query->fetch_assoc();
+					array_push(self::$result, $r);
+				}
+			}else {
+				array_push(self::$result, self::$dbconn->error);
+				return false;
+			}	
+
+		}
+
 		/*get result of any queru*/
 		public function getResult() {
 			return self::$result;
@@ -299,17 +317,17 @@ to get result call
 		}	
 				/*get result of any queru*/
 		public function flush() {
-					// General var
-		self::$conn = false;
-		self::$dbconn = ""; //define database connection var
-		self::$result = array();	//get any ruselt in array
-		self::$myQuery = "";	//get writen query
-		self::$numResults = "";	//get or display number of row in table or count result
-		self::$querytype = ""; //store query type like "SELECT","INSERT INTO","UPDATE","DELETE FROM"
-		self::$q = array(); //store query as array form
-		self::$db_columns = ""; //store database columns
-		self::$db_values = ""; //store query values
-		self::$db_condition = ""; //store condition
+
+			self::$conn = false;
+			self::$dbconn = ""; //define database connection var
+			self::$result = array();	//get any ruselt in array
+			self::$myQuery = "";	//get writen query
+			self::$numResults = "";	//get or display number of row in table or count result
+			self::$querytype = ""; //store query type like "SELECT","INSERT INTO","UPDATE","DELETE FROM"
+			self::$q = array(); //store query as array form
+			self::$db_columns = ""; //store database columns
+			self::$db_values = ""; //store query values
+			self::$db_condition = ""; //store condition
 		//errors
 		}	
 

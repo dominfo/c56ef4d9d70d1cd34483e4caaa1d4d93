@@ -65,7 +65,7 @@ class form
     {
         return $this->form_name;
     }
-    public function startForm($name ,$method, $action , $file = false )
+    public function startForm($name ,$method, $action=null , $file = false )
     {
         if($file == true)
         {
@@ -183,7 +183,20 @@ class form
         }
         $field .= ' id="id_'.$this->getFormName().'_'.$name.'">';
         return $field;  
-    }   
+    }  
+    public function createDropDownField($name, $options = null ,$selected = null)
+    {
+        $field = '<select name="'.$name.'" id="id_'.$this->getFormName().'_'.$name.'">';
+        if($options != null)
+        {
+            foreach ($options as $key => $value) {
+               $field .= '<option value="'.$key.'">'.$value.'</option>';
+            }
+        }
+
+        $field .= '</select>';
+        return $field;  
+    }  
     public function createResetField($class = null)
     {
         $field = '<input type="reset"';

@@ -34,7 +34,7 @@ function getsubcategories($value , $i)
 				echo '</a>';
 				echo '</li>';
 				$j++;
-				//getsubcategories($value , $i);
+				//getsubsubcategories($value , $i);
 
 			}
 			$i++;
